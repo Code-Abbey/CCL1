@@ -1,11 +1,11 @@
 # CCL1
-Creative Code Lab 1 - WS2024
+## Creative Code Lab 1 - WS2024
 
-Day 1 - 13th Jan. 2024
+## Day 1 - 13th Jan. 2024
 
-** Explain my Game to The Teacher
-** Search for similar games
-** Started working on the Game Core
+* Explain my Game to The Teacher
+* Search for similar games
+* Started working on the Game Core
 
 Day 2 - 14 January 2024
 
