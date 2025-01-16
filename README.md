@@ -27,3 +27,13 @@ Basically what i did today was an improvemnet on what i did yesterday
 * Incorporated collision detection to end the game when the player hits an obstacle.
 
 ## Day 4 - 16 Jan. 2025
+Summary of Changes (Today's Work)
+
+* Styled the dialogue between Mike and the manager as a modern chat interface, with blue messages for the manager and green messages for Mike.
+* Fixed the jump mechanic by refining collision logic so the player can properly avoid obstacles while jumping.
+* Organized the project into a clear structure with separate files: index.html, styles/styles.css, scripts/game.js, scripts/player.js, scripts/obstacle.js, scripts/deliveryPoint.js, scripts/road.js, scripts/environment.js, scripts/dialogue.js, and scripts/timer.js.
+* Ensured the countdown timer functionality for the 90-second gameplay remains integrated and functional.
+* Made the game fully responsive, including the game canvas, overlays, and dialogue box.
+* Fixed bugs related to obstacle collisions and dialogue display logic.
+
+## Day 5 - 17 Jan. 2025
