@@ -37,3 +37,12 @@ Summary of Changes (Today's Work)
 * Fixed bugs related to obstacle collisions and dialogue display logic.
 
 ## Day 5 - 17 Jan. 2025
+
+* Started designing game characters in Adobe Illustrator.
+* Implemented a jump mechanic with smooth animation and collision avoidance.
+* Added a shadow effect to indicate when the player is airborne.
+* Enabled acceleration (W key) and deceleration (S key) for dynamic speed control.
+* Debugged and improved obstacle collision logic.
+* Organized and cleaned up the project codebase for better maintainability.
+
+## Day 6 - 18 Jan. 2025
