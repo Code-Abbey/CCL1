@@ -186,5 +186,5 @@ function startMusic() {
 
 ## **Final Thoughts**
 This project demonstrates how **JavaScript, HTML5 Canvas, and CSS** work together to create an interactive game. it my Game Project for the Creative Code Lab WS2024 at St. Pölten University of Applied Science, Austria.
-It includes **game logic, animations, illustrations, audio integration, and real-time player interactions**. Future improvements can make it even more engaging and immersive.
+It includes **game logic, animations, illustrations, audio integration, and real-time player interactions**. Future improvements can make it even more engaging and immersive.**P.S. i drew the entire art work (./assets/images) for this project using Adobe illustrator**
 
