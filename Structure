@@ -1,0 +1,19 @@
+/delivery-game
+├── index.html       # Home screen
+├── game.html        # Game + Dialogue system
+├── styles.css       # All game styles
+├── README.md        # Documentation
+├── /assets/
+│   ├── /images/     # Game images (characters, backgrounds, obstacles)
+│   ├── /sounds/     # Background music & sound effects
+├── /scripts/
+│   ├── script.js    # Handles transitions (Home → Dialogue → Game)
+│   ├── game.js      # Game logic
+│   ├── dialogue.js  # Dialogue system
+│   ├── player.js    # Player movement & controls
+│   ├── npc.js       # NPC AI logic
+│   ├── timer.js     # Game timer
+│   ├── road.js      # Road rendering
+│   ├── environment.js # Background elements
+│   ├── obstacle.js  # Obstacles on the road
+│   ├── deliveryPoint.js # Delivery points
