@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Man Game</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+
+    <!-- Dialogue System -->
+    <div id="dialogueContainer">
+        <div id="dialogueBox">
+            <div id="dialogueContent">
+                <img id="speakerImage" src="" alt="Speaker">
+                <p id="dialogueText"></p>
+            </div>
+            <button id="nextButton">Next</button>
+        </div>
+    </div>
+
+    <!-- Game Container (Hidden Until Dialogue Ends) -->
+    <div id="gameContainer" class="hidden">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- Game Overlay for Results -->
+    <div id="gameOverlay" class="overlay hidden">
+        <div class="overlay-content">
+            <h1 id="overlayMessage"></h1>
+            <button id="restartBtn">Restart</button>
+        </div>
+    </div>
+
+    <script type="module" src="./scripts/script.js"></script>
+</body>
+</html>
