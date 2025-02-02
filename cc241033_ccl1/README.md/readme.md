@@ -1,8 +1,8 @@
-# 🏎️ Delivery Man Game
+# Delivery Man Game
 
 **A fun and interactive delivery game where you must complete deliveries while avoiding obstacles!**
 
-## 🎮 How to Play
+## How to Play
 1. Click **Start Game** on the home screen.
 2. Read through the **Manager & Mike's conversation** before the game starts.
 3. Control your player:
@@ -14,10 +14,10 @@
 
 ---
 
-## 🔧 **Setup & Installation**
-### **1️⃣ Prerequisites**
+## **Setup & Installation**
+### **Prerequisites**
 - A **web browser** (Google Chrome, Firefox, Edge, etc.)
 - A **code editor** (VS Code, Sublime Text, etc.)
 - **Live Server (Optional)** for better performance
 
-### **2️⃣ Running the Game**
+### ** Running the Game**
