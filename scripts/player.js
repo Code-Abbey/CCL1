@@ -20,7 +20,7 @@ export class Player {
 
         // Load player image
         this.image = new Image();
-        this.image.src = './assets/images/player.png';
+        this.image.src = '../assets/images/player.png';
 
         // Calculate initial position
         this.calculatePosition();
