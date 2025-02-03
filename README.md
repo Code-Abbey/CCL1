@@ -2,6 +2,8 @@
 
 ## **Overview**
 The **Delivery Man Game** is a web-based game built using **HTML, CSS, and JavaScript**. The objective is to complete deliveries within a set time while avoiding obstacles. The game includes a pre-game dialogue between the Manager and the Delivery Driver and features NPCs, a game timer, and background music.
+[![Play the Game](https://img.shields.io/badge/Play%20Now-Click%20Here-blue?style=for-the-badge)](https://code-abbey.github.io/CCL1/)
+
 
 ---
 
