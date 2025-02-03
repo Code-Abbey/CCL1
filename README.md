@@ -197,6 +197,11 @@ function startMusic() {
 ---
 
 ## **Final Thoughts**
-This project demonstrates how **JavaScript, HTML5 Canvas, and CSS** work together to create an interactive game. it my Game Project for the Creative Code Lab WS2024 at St. Pölten University of Applied Science, Austria.
-It includes **game logic, animations, illustrations, audio integration, and real-time player interactions**. Future improvements can make it even more engaging and immersive.**P.S. i drew the entire art work (./assets/images) for this project using Adobe illustrator**
+This project showcases how **JavaScript, HTML5 Canvas, and CSS** integrate to create an interactive game experience. It is my **first game project**, developed using concepts from the **WS2024 Creative Computing** course at [St. Pölten University of Applied Sciences](https://www.fhstp.ac.at/en/study-programmes/media-digital-technologies/creative-computing?utm_campaign=BCC_2025_AUT&gad_source=1&utm_medium=cpc&set_language=en).  
+
+The game features **dynamic player controls, NPC behavior, obstacle avoidance, and a pre-game dialogue system**, all combined with **custom animations, audio integration, and a game timer**.  
+
+🔹 **Future Enhancements** – Expanding gameplay with power-ups, more challenging obstacles, and additional levels could make it even more immersive.  
+
+📌 **Personal Note:** I personally designed all the artwork used in this project (**`/assets/images`**) using **Adobe Illustrator**.  
 
