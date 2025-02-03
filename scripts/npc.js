@@ -11,7 +11,7 @@ export class NPC {
 
         // Load NPC image
         this.image = new Image();
-        this.image.src = '../assets/images/npc.png';
+        this.image.src = './assets/images/npc.png';
 
         this.calculatePosition(road);
     }
