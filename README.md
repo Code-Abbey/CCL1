@@ -1,9 +1,18 @@
 # The Delivery Man Game - Project Documentation
 
 ## **Overview**
-The **Delivery Man Game** is a web-based game built using **HTML, CSS, and JavaScript**. The objective is to complete deliveries within a set time while avoiding obstacles. The game includes a pre-game dialogue between the Manager and the Delivery Driver and features NPCs, a game timer, and background music.
-[![Play the Game](https://img.shields.io/badge/Play%20Now-Click%20Here-blue?style=for-the-badge)](https://code-abbey.github.io/CCL1/)
+The **Delivery Man Game** is a web-based game built using **HTML, CSS, and JavaScript**. The objective is to deliver packages within a set time while avoiding obstacles. 
 
+### **Key Features**
+- 🎮 **Interactive Gameplay** – Control a delivery rider and navigate the streets.
+- 🗨 **Dynamic Dialogue System** – Pre-game conversation between the **Manager** and the **Delivery Driver**.
+- 🚧 **Obstacles & NPCs** – Avoid moving obstacles and interact with NPCs.
+- ⏳ **Game Timer** – Deliver packages before time runs out.
+- 🎵 **Background Music** – Enhances the gaming experience.
+- 🏆 **Win/Lose Conditions** – Complete 15 deliveries to win or fail if time runs out.
+
+### **▶ Play the Game**
+[👉 **Click Here to Play**](https://code-abbey.github.io/CCL1/)
 
 ---
 
@@ -177,12 +186,13 @@ function startMusic() {
 ---
 
 ## **Summary**
-✔️ Player moves using **A/D keys**, jumps with **Spacebar**.  
-✔️ Game runs a **continuous loop** to update & render movement.  
-✔️ NPCs move dynamically to **increase difficulty**.  
-✔️ Win by delivering **15 packages**, lose by **colliding or running out of time**.  
-✔️ **Background music** plays from start to finish.  
-✔️ **Road and environment animate** to improve immersion.  
+✔️ **Player Controls** – Move with **A/D keys**, accelerate with **W**, decelerate with **S**, and jump with **Spacebar**.  
+✔️ **Smooth Gameplay Loop** – The game continuously updates player movement, NPC actions, and animations.  
+✔️ **Dynamic NPC Behavior** – NPCs move unpredictably to increase difficulty.  
+✔️ **Win Condition** – Successfully deliver **15 packages** before time runs out.  
+✔️ **Lose Condition** – Game over if you **collide with an obstacle** or **run out of time**.  
+✔️ **Realistic Speed Mechanics** – Players can **accelerate and decelerate** for better maneuverability.  
+✔️ **Immersive Experience** – **Background music** plays throughout, and the **road & environment animate** to enhance realism.  
 
 ---
 
