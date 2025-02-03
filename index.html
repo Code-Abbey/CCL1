@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Man Game</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body id="homeScreen">
+
+    <!-- Home Container (Only the start button should be here) -->
+    <div id="homeContainer">
+        <button id="startGameBtn" onclick="startMusic()">Start Game</button>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="./assets/sounds/emotional-guitar-loop-v13-275455.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script type="module" src="./scripts/script.js"></script>
+    <script>
+        function startMusic() {
+            let bgMusic = document.getElementById("backgroundMusic");
+            if (bgMusic) {
+                bgMusic.volume = 0.5; // Adjust volume if needed
+                bgMusic.play().catch(error => console.error("Error playing background music:", error));
+            }
+
+            // Redirect to the game page
+            window.location.href = "game.html";
+        }
+    </script>
+</body>
+</html>
