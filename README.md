@@ -197,7 +197,7 @@ function startMusic() {
 ---
 
 ## **Final Thoughts**
-This project showcases how **JavaScript, HTML5 Canvas, and CSS** integrate to create an interactive game experience. It is my **first game project**, developed using concepts from the **WS2024 Creative Computing** course at [St. Pölten University of Applied Sciences](https://www.fhstp.ac.at/en/study-programmes/media-digital-technologies/creative-computing?utm_campaign=BCC_2025_AUT&gad_source=1&utm_medium=cpc&set_language=en).  
+This project showcases how **JavaScript, HTML5 Canvas, and CSS** integrate to create an interactive game experience. It is my **first game project**, developed using concepts from the **WS2024 Creative Computing** course at [University of Applied Sciences St Pölten](https://www.ustp.at/en/study-programmes/media-digital-technologies/creative-computing?set_language=en).  
 
 The game features **dynamic player controls, NPC behavior, obstacle avoidance, and a pre-game dialogue system**, all combined with **custom animations, audio integration, and a game timer**.  
 
