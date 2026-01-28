@@ -12,6 +12,10 @@ export class Player {
         this.maxSpeed = 12;
         this.minSpeed = 2;
 
+        // Lane change cooldown to prevent rapid lane skipping
+        this.lastLaneChangeAt = 0;
+        this.laneChangeCooldownMs = 150;
+
         // Flyover properties
         this.isFlying = false;
         this.flyHeight = 150; // Maximum height during flyover
@@ -33,6 +37,12 @@ export class Player {
         this.x = roadX + this.lane * laneWidth + (laneWidth - this.width) / 2;
     }
 
+    onResize() {
+        this.y = this.canvas.height - this.height - 100;
+        this.baseY = this.y;
+        this.calculatePosition();
+    }
+
     fly() {
         if (this.isFlying) return; // Prevent multiple flyovers
         this.isFlying = true;
@@ -40,14 +50,17 @@ export class Player {
     }
 
     move(keys) {
+        const now = Date.now();
         // Lane changes
-        if (keys.a && this.lane > 0) {
+        if (keys.a && this.lane > 0 && now - this.lastLaneChangeAt > this.laneChangeCooldownMs) {
             this.lane -= 1;
             this.calculatePosition();
+            this.lastLaneChangeAt = now;
         }
-        if (keys.d && this.lane < 1) {
+        if (keys.d && this.lane < 1 && now - this.lastLaneChangeAt > this.laneChangeCooldownMs) {
             this.lane += 1;
             this.calculatePosition();
+            this.lastLaneChangeAt = now;
         }
 
         // Adjust speed with W (accelerate) and S (decelerate)

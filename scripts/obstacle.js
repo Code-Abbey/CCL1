@@ -2,6 +2,7 @@ export class Obstacle {
     constructor(canvas, road, images, occupiedLanes) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
+        this.road = road;
         const laneWidth = road.width / 2;
         const roadX = road.x;
 
@@ -44,15 +45,26 @@ export class Obstacle {
         // Reset position if off-screen
         if (this.y > this.canvas.height) {
             this.y = this.getRandomYPosition();
+            this.occupiedLanes[this.lane] = false; // Release previous lane
             this.lane = this.getAvailableLane(this.occupiedLanes); // Get a new available lane
-            this.x = (this.canvas.width * 0.3 / 2) * this.lane + 
-                     ((this.canvas.width - this.canvas.width * 0.3) / 2) + 
-                     ((this.canvas.width * 0.3 / 2 - this.width) / 2);
+            this.updateX();
             this.image = this.getRandomImage(); // Change image
 
             // Mark the new lane as occupied
             this.occupiedLanes[this.lane] = true;
         }
+    }
+
+    updateX() {
+        const laneWidth = this.road.width / 2;
+        const roadX = this.road.x;
+        this.width = laneWidth - 40;
+        this.x = roadX + this.lane * laneWidth + (laneWidth - this.width) / 2;
+    }
+
+    onResize(road) {
+        this.road = road;
+        this.updateX();
     }
 
     draw() {

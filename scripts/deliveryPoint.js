@@ -2,6 +2,7 @@ export class DeliveryPoint {
     constructor(canvas, road) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
+        this.road = road;
         const laneWidth = road.width / 2;
         const roadX = road.x;
 
@@ -28,7 +29,19 @@ export class DeliveryPoint {
         if (this.y > this.canvas.height) {
             this.y = this.getRandomYPosition();
             this.lane = Math.floor(Math.random() * 2); // Randomize lane
+            this.updateX();
         }
+    }
+
+    updateX() {
+        const laneWidth = this.road.width / 2;
+        const roadX = this.road.x;
+        this.x = roadX + this.lane * laneWidth + (laneWidth - this.width) / 2;
+    }
+
+    onResize(road) {
+        this.road = road;
+        this.updateX();
     }
 
     draw() {

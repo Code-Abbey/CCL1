@@ -14,6 +14,12 @@ The **Delivery Man Game** is a web-based game built using **HTML, CSS, and JavaS
 ### **▶ Play the Game**
 [👉 **Click Here to Play**](https://code-abbey.github.io/CCL1/)
 
+### **GitHub Pages Setup**
+1. In GitHub, open the repository **Settings → Pages**.
+2. Set **Source** to **Deploy from a branch**.
+3. Select **Branch: main** and **/ (root)**, then save.
+4. The site will be available at: `https://<your-username>.github.io/CCL1/`.
+
 ---
 
 ## **Project Structure**
@@ -162,6 +168,10 @@ this.obstacles.forEach((obstacle) => {
 });
 ```
 **Checks for successful deliveries or collisions to determine game outcome.**
+
+### **Pause & Mute**
+- **P** toggles pause.
+- **M** toggles mute.
 
 ### **Background Music (`script.js`)**
 ```javascript

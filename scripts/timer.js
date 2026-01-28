@@ -4,17 +4,27 @@ export class GameTimer {
         this.remainingTime = duration;
         this.interval = null;
         this.onEnd = onEnd;
+        this.isPaused = false;
     }
 
     start() {
         if (this.interval) return; // Prevent multiple intervals
         this.interval = setInterval(() => {
+            if (this.isPaused) return;
             this.remainingTime--;
             if (this.remainingTime <= 0) {
                 this.stop();
                 this.onEnd(); // Trigger the end callback
             }
         }, 1000);
+    }
+
+    pause() {
+        this.isPaused = true;
+    }
+
+    resume() {
+        this.isPaused = false;
     }
 
     stop() {

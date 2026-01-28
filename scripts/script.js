@@ -1,4 +1,21 @@
-let backgroundMusic; // Global variable for background music
+let backgroundMusic; // Module-scoped background music
+let musicEnabled = false;
+
+function ensureBackgroundMusic() {
+    if (!backgroundMusic) {
+        backgroundMusic = new Audio('./assets/sounds/emotional-guitar-loop-v13-275455.mp3');
+        backgroundMusic.loop = true;
+        backgroundMusic.volume = 0.5;
+        window.backgroundMusic = backgroundMusic; // Expose for game controls
+    }
+}
+
+function tryPlayBackgroundMusic() {
+    ensureBackgroundMusic();
+    if (musicEnabled) {
+        backgroundMusic.play().catch(error => console.error("Error playing background music:", error));
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("homeContainer")) {
@@ -11,17 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // Home Screen Logic
 function setupHomePage() {
     console.log("Home screen loaded.");
-
-    // Initialize and play background music
-    backgroundMusic = new Audio('./assets/sounds/emotional-guitar-loop-v13-275455.mp3');
-    backgroundMusic.loop = true; // Make sure it loops
-    backgroundMusic.volume = 0.5; // Adjust volume if needed
-    backgroundMusic.play().catch(error => console.error("Error playing background music:", error));
+    ensureBackgroundMusic();
 
     const startButton = document.getElementById("startGameBtn");
     if (startButton) {
         startButton.addEventListener("click", () => {
             console.log("Start Game button clicked. Redirecting to game.html...");
+            musicEnabled = true;
+            sessionStorage.setItem("musicEnabled", "true");
+            tryPlayBackgroundMusic();
             window.location.href = "game.html"; // Redirect to the game page
         });
     } else {
@@ -32,13 +47,9 @@ function setupHomePage() {
 // 🎮 Game Page Logic (Handles Dialogue First, Then Starts Game)
 function setupGamePage() {
     console.log("Game screen loaded. Checking dialogue system...");
-
-    if (!backgroundMusic) {
-        backgroundMusic = new Audio('./assets/sounds/emotional-guitar-loop-v13-275455.mp3');
-        backgroundMusic.loop = true;
-        backgroundMusic.volume = 0.5;
-        backgroundMusic.play().catch(error => console.error("Error playing background music:", error));
-    }
+    ensureBackgroundMusic();
+    musicEnabled = sessionStorage.getItem("musicEnabled") === "true";
+    tryPlayBackgroundMusic();
 
     const gameOverlay = document.getElementById("gameOverlay");
     if (gameOverlay) {
@@ -82,4 +93,15 @@ function setupGamePage() {
     } else {
         console.error("Error: dialogueBox not found.");
     }
+
+    // If autoplay is blocked, start music on first user interaction
+    document.addEventListener(
+        "click",
+        () => {
+            musicEnabled = true;
+            sessionStorage.setItem("musicEnabled", "true");
+            tryPlayBackgroundMusic();
+        },
+        { once: true }
+    );
 }
