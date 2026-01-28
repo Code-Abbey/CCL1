@@ -3,6 +3,11 @@ export class Dialogue {
         this.dialogues = dialogues;
         this.onComplete = onComplete;
         this.currentIndex = 0;
+        this.handleKeyDown = (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                this.nextDialogue();
+            }
+        };
     }
 
     start() {
@@ -11,9 +16,10 @@ export class Dialogue {
 
     renderDialogue() {
         const dialogueBox = document.getElementById('dialogueBox');
-        const dialogueContainer = document.getElementById('dialogueContainer');
         const dialogueText = document.getElementById('dialogueText');
         const speakerImage = document.getElementById('speakerImage');
+        const nextButton = document.getElementById('nextButton');
+        const skipButton = document.getElementById('skipButton');
 
         // Get the current message
         const { speaker, message } = this.dialogues[this.currentIndex];
@@ -30,8 +36,19 @@ export class Dialogue {
         // Update dialogue text
         dialogueText.innerHTML = `<strong>${speaker}:</strong> ${message}`;
 
-        // Add event to continue dialogue
-        document.getElementById('nextButton').onclick = () => this.nextDialogue();
+        // Update button label on final line
+        if (nextButton) {
+            nextButton.textContent = this.currentIndex === this.dialogues.length - 1 ? 'Start Delivery' : 'Next';
+            nextButton.onclick = () => this.nextDialogue();
+        }
+
+        if (skipButton) {
+            skipButton.onclick = () => this.endDialogue();
+        }
+
+        // Keyboard support
+        document.removeEventListener('keydown', this.handleKeyDown);
+        document.addEventListener('keydown', this.handleKeyDown);
     }
 
     nextDialogue() {
@@ -45,6 +62,7 @@ export class Dialogue {
 
     endDialogue() {
         console.log("Dialogue finished. Hiding dialogue box and starting game...");
+        document.removeEventListener('keydown', this.handleKeyDown);
 
         // Remove the dialogue container if it exists
         const dialogueContainer = document.getElementById('dialogueContainer');
@@ -52,15 +70,6 @@ export class Dialogue {
             dialogueContainer.remove(); // Completely removes the dialogue box from the DOM
         } else {
             console.warn("Warning: dialogueContainer not found, skipping removal.");
-        }
-
-        // Check if gameContainer exists before modifying it
-        const gameContainer = document.getElementById("gameContainer");
-        if (gameContainer) {
-            gameContainer.classList.remove("hidden"); // Show the game
-        } else {
-            console.error("Error: gameContainer not found! The game may not start.");
-            return; // Stop execution if gameContainer is missing
         }
 
         // Run the game start function safely

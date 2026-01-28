@@ -129,6 +129,28 @@ body {
     max-width: 520px;
     width: 90%;
 }
+
+.dialogue-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+#skipButton {
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #f5f5f5;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#skipButton:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+}
 /* Chat Bubble Layout */
 #dialogueContent {
     display: flex;
@@ -176,7 +198,6 @@ body {
 
 /* Next Button */
 #nextButton {
-    margin-top: 10px;
     padding: 10px 20px;
     background: linear-gradient(135deg, #ffd54f, #ffb300);
     color: black;
