@@ -72,6 +72,11 @@ export class Dialogue {
             console.warn("Warning: dialogueContainer not found, skipping removal.");
         }
 
+        const gameContainer = document.getElementById("gameContainer");
+        if (gameContainer) {
+            gameContainer.classList.remove("hidden");
+        }
+
         // Run the game start function safely
         if (typeof this.onComplete === 'function') {
             try {

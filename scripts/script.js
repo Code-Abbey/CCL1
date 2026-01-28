@@ -49,6 +49,16 @@ function setupGamePage() {
     console.log("Game screen loaded. Checking dialogue system...");
     let gameStarted = false;
 
+    const showStartError = (message) => {
+        console.error(message);
+        const overlay = document.getElementById("gameOverlay");
+        const messageEl = document.getElementById("overlayMessage");
+        if (overlay && messageEl) {
+            messageEl.textContent = message;
+            overlay.classList.remove("hidden");
+        }
+    };
+
     const startGame = () => {
         if (gameStarted) return;
         gameStarted = true;
@@ -64,10 +74,17 @@ function setupGamePage() {
             import('./game.js')
                 .then(({ Game }) => {
                     console.log("Game.js loaded successfully! Starting game...");
-                    const game = new Game("gameCanvas");
-                    game.startGame();
+                    try {
+                        const game = new Game("gameCanvas");
+                        game.startGame();
+                    } catch (error) {
+                        showStartError("Game failed to start. Please refresh and try again.");
+                    }
                 })
-                .catch(error => console.error("Error loading game.js:", error));
+                .catch(error => {
+                    console.error("Error loading game.js:", error);
+                    showStartError("Game failed to load. Please refresh and try again.");
+                });
         });
     };
     window.__startGame = startGame;
