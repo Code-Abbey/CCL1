@@ -80,5 +80,9 @@ export class Dialogue {
                 console.error("Error running onComplete function:", error);
             }
         }
+
+        if (typeof window.__startGame === 'function') {
+            window.__startGame();
+        }
     }
 }

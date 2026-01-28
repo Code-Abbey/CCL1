@@ -60,14 +60,17 @@ function setupGamePage() {
             console.error("Error: gameContainer not found.");
         }
 
-        import('./game.js')
-            .then(({ Game }) => {
-                console.log("Game.js loaded successfully! Starting game...");
-                const game = new Game("gameCanvas");
-                game.startGame();
-            })
-            .catch(error => console.error("Error loading game.js:", error));
+        requestAnimationFrame(() => {
+            import('./game.js')
+                .then(({ Game }) => {
+                    console.log("Game.js loaded successfully! Starting game...");
+                    const game = new Game("gameCanvas");
+                    game.startGame();
+                })
+                .catch(error => console.error("Error loading game.js:", error));
+        });
     };
+    window.__startGame = startGame;
     ensureBackgroundMusic();
     musicEnabled = sessionStorage.getItem("musicEnabled") === "true";
     tryPlayBackgroundMusic();
