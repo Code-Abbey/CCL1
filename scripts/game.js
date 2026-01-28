@@ -1,8 +1,3 @@
-if (!document.getElementById("gameCanvas")) {
-    console.error("Error: gameCanvas not found! Make sure gameContainer is visible before running game.js.");
-    throw new Error("Game initialization failed: gameCanvas not found.");
-}
-
 import { Road } from './road.js';
 import { Player } from './player.js';
 import { Obstacle } from './obstacle.js';
@@ -15,6 +10,10 @@ import { Dialogue } from './dialogue.js';
 export class Game {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
+        if (!this.canvas) {
+            console.error("Error: gameCanvas not found! Ensure gameContainer is in the DOM.");
+            throw new Error("Game initialization failed: gameCanvas not found.");
+        }
         this.ctx = this.canvas.getContext('2d');
         this.keys = { a: false, d: false, w: false, s: false, space: false };
 

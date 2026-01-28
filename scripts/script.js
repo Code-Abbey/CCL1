@@ -47,6 +47,27 @@ function setupHomePage() {
 // 🎮 Game Page Logic (Handles Dialogue First, Then Starts Game)
 function setupGamePage() {
     console.log("Game screen loaded. Checking dialogue system...");
+    let gameStarted = false;
+
+    const startGame = () => {
+        if (gameStarted) return;
+        gameStarted = true;
+
+        const gameContainer = document.getElementById("gameContainer");
+        if (gameContainer) {
+            gameContainer.classList.remove("hidden");
+        } else {
+            console.error("Error: gameContainer not found.");
+        }
+
+        import('./game.js')
+            .then(({ Game }) => {
+                console.log("Game.js loaded successfully! Starting game...");
+                const game = new Game("gameCanvas");
+                game.startGame();
+            })
+            .catch(error => console.error("Error loading game.js:", error));
+    };
     ensureBackgroundMusic();
     musicEnabled = sessionStorage.getItem("musicEnabled") === "true";
     tryPlayBackgroundMusic();
@@ -67,31 +88,17 @@ function setupGamePage() {
 
             const dialogue = new Dialogue(dialogues, () => {
                 console.log("Dialogue completed, starting game...");
-                const dialogueContainer = document.getElementById("dialogueContainer");
-                if (dialogueContainer) {
-                    dialogueContainer.remove();
-                }
-
-                const gameContainer = document.getElementById("gameContainer");
-                if (gameContainer) {
-                    gameContainer.classList.remove("hidden");
-                } else {
-                    console.error("Error: gameContainer not found.");
-                }
-
-                import('./game.js')
-                    .then(({ Game }) => {
-                        console.log("Game.js loaded successfully! Starting game...");
-                        const game = new Game("gameCanvas");
-                        game.startGame();
-                    })
-                    .catch(error => console.error("Error loading game.js:", error));
+                startGame();
             });
 
             dialogue.start();
+        }).catch(error => {
+            console.error("Error loading dialogue.js:", error);
+            startGame();
         });
     } else {
         console.error("Error: dialogueBox not found.");
+        startGame();
     }
 
     // If autoplay is blocked, start music on first user interaction
