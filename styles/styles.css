@@ -112,7 +112,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.92), rgba(208, 225, 173, 0.95));
+    background: linear-gradient(135deg, rgba(24, 24, 24, 0.92), rgba(38, 60, 34, 0.92)),
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.5));
+    backdrop-filter: blur(6px);
 }
 
 /* Dialogue Box */
@@ -120,14 +122,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(17, 17, 17, 0.92);
-    padding: 22px;
-    border-radius: 18px;
+    background: rgba(10, 10, 10, 0.92);
+    padding: 26px 28px;
+    border-radius: 22px;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(5px); /* Adds a nice blur effect */
-    max-width: 520px;
-    width: 90%;
+    max-width: 620px;
+    width: min(90%, 640px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .dialogue-actions {
@@ -156,25 +159,26 @@ body {
     display: flex;
     align-items: flex-start;
     width: 100%;
-    padding: 10px;
+    padding: 10px 6px;
     border-radius: 10px;
     max-width: 500px;
 }
 
 /* Speaker Image */
 #speakerImage {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     margin-right: 10px;
-    border: 2px solid white;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
 /* Speech Bubble */
 #dialogueText {
-    padding: 12px 15px;
+    padding: 14px 16px;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 17px;
     max-width: 80%;
     text-align: left;
     line-height: 1.5;
@@ -185,7 +189,7 @@ body {
     background: linear-gradient(to right, #007BFF, #0056b3);
     color: white;
     align-self: flex-start;
-    box-shadow: 2px 2px 10px rgba(0, 0, 255, 0.3);
+    box-shadow: 2px 6px 14px rgba(0, 0, 255, 0.35);
 }
 
 /* Mike's Message (Right Side) */
@@ -193,7 +197,7 @@ body {
     background: linear-gradient(to right, #28A745, #1c7430);
     color: white;
     align-self: flex-end;
-    box-shadow: 2px 2px 10px rgba(0, 128, 0, 0.3);
+    box-shadow: 2px 6px 14px rgba(0, 128, 0, 0.35);
 }
 
 /* Next Button */
@@ -240,6 +244,8 @@ canvas {
     grid-template-columns: repeat(3, minmax(120px, 160px));
     gap: 12px;
     z-index: 5;
+    width: 100%;
+    justify-content: center;
 }
 
 .hud-card {
