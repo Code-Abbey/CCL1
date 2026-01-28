@@ -18,6 +18,9 @@ export class Game {
         this.keys = { a: false, d: false, w: false, s: false, space: false };
 
         this.resizeCanvas();
+        if (this.canvas.width === 0 || this.canvas.height === 0) {
+            requestAnimationFrame(() => this.resizeCanvas());
+        }
 
         this.road = new Road(this.canvas);
         this.environment = new Environment(this.canvas);
@@ -190,9 +193,25 @@ export class Game {
 
     gameLoop() {
         if (this.gameRunning) {
-            this.update();
-            this.draw();
-            requestAnimationFrame(() => this.gameLoop());
+            try {
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.gameLoop());
+            } catch (error) {
+                this.showFatalError(error);
+            }
+        }
+    }
+
+    showFatalError(error) {
+        console.error('Game loop error:', error);
+        this.gameRunning = false;
+        this.timer.stop();
+        const overlay = document.getElementById('gameOverlay');
+        const messageEl = document.getElementById('overlayMessage');
+        if (overlay && messageEl) {
+            messageEl.textContent = `Game error: ${error.message || 'Unknown error'}`;
+            overlay.classList.remove('hidden');
         }
     }
 

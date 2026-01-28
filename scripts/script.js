@@ -59,6 +59,17 @@ function setupGamePage() {
         }
     };
 
+    window.addEventListener('error', (event) => {
+        if (!gameStarted) return;
+        showStartError(`Game error: ${event.message}`);
+    });
+
+    window.addEventListener('unhandledrejection', (event) => {
+        if (!gameStarted) return;
+        const reason = event.reason && event.reason.message ? event.reason.message : 'Unknown error';
+        showStartError(`Game error: ${reason}`);
+    });
+
     const startGame = () => {
         if (gameStarted) return;
         gameStarted = true;
