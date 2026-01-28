@@ -1,5 +1,6 @@
 let backgroundMusic; // Module-scoped background music
 let musicEnabled = false;
+let uiClickSound;
 
 function ensureBackgroundMusic() {
     if (!backgroundMusic) {
@@ -17,12 +18,31 @@ function tryPlayBackgroundMusic() {
     }
 }
 
+function ensureUiClickSound() {
+    if (!uiClickSound) {
+        uiClickSound = new Audio('./assets/sounds/button-202966.mp3');
+        uiClickSound.volume = 0.5;
+    }
+}
+
+function playUiClick() {
+    ensureUiClickSound();
+    uiClickSound.currentTime = 0;
+    uiClickSound.play().catch(() => {});
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("homeContainer")) {
         setupHomePage();
     } else if (document.getElementById("dialogueBox")) {
         setupGamePage();
     }
+
+    document.addEventListener('click', (event) => {
+        if (event.target && event.target.tagName === 'BUTTON') {
+            playUiClick();
+        }
+    });
 });
 
 // Home Screen Logic

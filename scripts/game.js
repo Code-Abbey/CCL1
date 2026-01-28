@@ -30,6 +30,12 @@ export class Game {
         this.player = new Player(this.canvas);
         this.npc = new NPC(this.canvas, this.road);
 
+        this.hud = {
+            score: document.getElementById('hudScore'),
+            timer: document.getElementById('hudTimer'),
+            earnings: document.getElementById('hudEarnings')
+        };
+
         // Game configuration
         this.score = 0;
         this.targetDeliveries = 15; // Deliveries needed to win
@@ -59,10 +65,11 @@ export class Game {
         // Sound effects
         this.sfx = {
             delivery: new Audio('./assets/sounds/button-202966.mp3'),
-            crash: new Audio('./assets/sounds/motorcycle-sound-effects-sfx-179535.mp3')
+            engine: new Audio('./assets/sounds/motorcycle-sound-effects-sfx-179535.mp3')
         };
         this.sfx.delivery.volume = 0.4;
-        this.sfx.crash.volume = 0.2;
+        this.sfx.engine.volume = 0.25;
+        this.sfx.engine.loop = true;
     }
 
     resizeCanvas() {
@@ -130,7 +137,6 @@ export class Game {
         this.obstacles.forEach((obstacle) => {
             obstacle.update(this.player.speed);
             if (obstacle.checkCollision(this.player)) {
-                this.playSound(this.sfx.crash);
                 this.endGame(false);
             }
         });
@@ -167,14 +173,7 @@ export class Game {
         this.obstacles.forEach((obstacle) => obstacle.draw());
         this.deliveryPoints.forEach((point) => point.draw());
 
-        // Draw HUD
-        this.ctx.fillStyle = 'black';
-        this.ctx.font = '20px Arial';
-        this.ctx.fillText(`Deliveries: ${this.score}/${this.targetDeliveries}`, 20, 30);
-        this.ctx.fillText(`Speed: ${this.player.speed.toFixed(1)}`, 20, 55);
-        this.ctx.fillText(`Earnings: $${this.totalEarnings}`, 20, 80);
-        this.ctx.fillText('P: Pause  |  M: Mute', 20, 105);
-        this.timer.display(this.ctx);
+        this.updateHud();
 
         if (this.isPaused) {
             this.ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
@@ -187,6 +186,11 @@ export class Game {
 
     startGame() {
         this.gameRunning = true;
+        const bg = window.backgroundMusic;
+        if (bg) {
+            bg.pause();
+        }
+        this.playSound(this.sfx.engine);
         this.scheduleDeliveryPoints();
         this.timer.start();
         this.gameLoop();
@@ -219,12 +223,17 @@ export class Game {
     endGame(success) {
         this.gameRunning = false;
         this.timer.stop();
+
+        if (this.sfx.engine) {
+            this.sfx.engine.pause();
+            this.sfx.engine.currentTime = 0;
+        }
     
         // Stop background music when the game ends
         const bg = window.backgroundMusic;
         if (bg) {
-            bg.pause();
-            bg.currentTime = 0; // Reset the music
+            bg.currentTime = 0;
+            bg.play().catch(() => {});
         }
     
         const baseEarnings = this.score * this.deliveryReward;
@@ -272,8 +281,12 @@ export class Game {
         this.isPaused = !this.isPaused;
         if (this.isPaused) {
             this.timer.pause();
+            if (this.sfx.engine) {
+                this.sfx.engine.pause();
+            }
         } else {
             this.timer.resume();
+            this.playSound(this.sfx.engine);
         }
     }
 
@@ -283,12 +296,27 @@ export class Game {
         if (bg) {
             bg.muted = this.isMuted;
         }
+        if (this.sfx.engine) {
+            this.sfx.engine.muted = this.isMuted;
+        }
     }
 
     playSound(sound) {
         if (!sound || this.isMuted) return;
         sound.currentTime = 0;
         sound.play().catch(() => {});
+    }
+
+    updateHud() {
+        if (this.hud.score) {
+            this.hud.score.textContent = `${this.score}/${this.targetDeliveries}`;
+        }
+        if (this.hud.timer) {
+            this.hud.timer.textContent = this.timer.getFormattedTime();
+        }
+        if (this.hud.earnings) {
+            this.hud.earnings.textContent = `$${this.totalEarnings}`;
+        }
     }
 }
 

@@ -24,6 +24,20 @@
 
     <!-- Game Container (Hidden Until Dialogue Ends) -->
     <div id="gameContainer" class="hidden">
+        <div id="hud">
+            <div class="hud-card">
+                <div class="hud-label">Deliveries</div>
+                <div id="hudScore" class="hud-value">0/15</div>
+            </div>
+            <div class="hud-card">
+                <div class="hud-label">Time Left</div>
+                <div id="hudTimer" class="hud-value">1:30</div>
+            </div>
+            <div class="hud-card">
+                <div class="hud-label">Earnings</div>
+                <div id="hudEarnings" class="hud-value">$0</div>
+            </div>
+        </div>
         <canvas id="gameCanvas"></canvas>
     </div>
 

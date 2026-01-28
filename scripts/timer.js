@@ -40,6 +40,10 @@ export class GameTimer {
         ctx.fillText(`Time Left: ${this.formatTime(this.remainingTime)}`, 20, 60);
     }
 
+    getFormattedTime() {
+        return this.formatTime(this.remainingTime);
+    }
+
     formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);
         const secs = seconds % 60;
