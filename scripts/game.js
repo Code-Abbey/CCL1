@@ -17,6 +17,9 @@ export class Game {
         this.ctx = this.canvas.getContext('2d');
         this.keys = { a: false, d: false, w: false, s: false, space: false };
 
+        this.obstacles = [];
+        this.deliveryPoints = [];
+
         this.resizeCanvas();
         if (this.canvas.width === 0 || this.canvas.height === 0) {
             requestAnimationFrame(() => this.resizeCanvas());
@@ -25,8 +28,6 @@ export class Game {
         this.road = new Road(this.canvas);
         this.environment = new Environment(this.canvas);
         this.player = new Player(this.canvas);
-        this.obstacles = [];
-        this.deliveryPoints = [];
         this.npc = new NPC(this.canvas, this.road);
 
         // Game configuration
@@ -75,10 +76,10 @@ export class Game {
         if (this.npc) {
             this.npc.calculatePosition(this.road);
         }
-        if (this.obstacles.length) {
+        if (this.obstacles && this.obstacles.length) {
             this.obstacles.forEach((obstacle) => obstacle.onResize(this.road));
         }
-        if (this.deliveryPoints.length) {
+        if (this.deliveryPoints && this.deliveryPoints.length) {
             this.deliveryPoints.forEach((point) => point.onResize(this.road));
         }
     }
