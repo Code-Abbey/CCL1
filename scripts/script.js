@@ -49,25 +49,26 @@ function setupGamePage() {
     console.log("Game screen loaded. Checking dialogue system...");
     let gameStarted = false;
 
-    const showStartError = (message) => {
-        console.error(message);
+    const showStartError = (message, error) => {
+        console.error(message, error);
         const overlay = document.getElementById("gameOverlay");
         const messageEl = document.getElementById("overlayMessage");
         if (overlay && messageEl) {
-            messageEl.textContent = message;
+            const details = error && error.message ? ` (${error.message})` : '';
+            messageEl.textContent = `${message}${details}`;
             overlay.classList.remove("hidden");
         }
     };
 
     window.addEventListener('error', (event) => {
         if (!gameStarted) return;
-        showStartError(`Game error: ${event.message}`);
+        showStartError(`Game error: ${event.message}`, event.error);
     });
 
     window.addEventListener('unhandledrejection', (event) => {
         if (!gameStarted) return;
         const reason = event.reason && event.reason.message ? event.reason.message : 'Unknown error';
-        showStartError(`Game error: ${reason}`);
+        showStartError(`Game error: ${reason}`, event.reason);
     });
 
     const startGame = () => {
@@ -89,12 +90,12 @@ function setupGamePage() {
                         const game = new Game("gameCanvas");
                         game.startGame();
                     } catch (error) {
-                        showStartError("Game failed to start. Please refresh and try again.");
+                        showStartError("Game failed to start. Please refresh and try again.", error);
                     }
                 })
                 .catch(error => {
                     console.error("Error loading game.js:", error);
-                    showStartError("Game failed to load. Please refresh and try again.");
+                    showStartError("Game failed to load. Please refresh and try again.", error);
                 });
         });
     };

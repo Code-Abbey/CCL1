@@ -258,7 +258,12 @@ export class Game {
             this.keys[e.key] = false;
         });
 
-        document.getElementById('restartBtn').addEventListener('click', () => this.restartGame());
+        const restartBtn = document.getElementById('restartBtn');
+        if (restartBtn) {
+            restartBtn.addEventListener('click', () => this.restartGame());
+        } else {
+            console.warn('Warning: restartBtn not found.');
+        }
     }
 
     togglePause() {
